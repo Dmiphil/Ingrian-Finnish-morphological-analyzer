@@ -1,3 +1,4 @@
+from nltk import SnowballStemmer
 from nltk import translate
 import nltk
 nltk.download('popular')
@@ -28,3 +29,17 @@ tokens = word_tokenize(text)
 lemmatized_words = [lemmatizer.lemmatize(word) for word in tokens]
 print(lemmatized_words)
 
+stemmer = SnowballStemmer("russian")
+text = "Лемматизированная форма слова листья это лист"
+tokens = word_tokenize(text)
+lemmatized_words = [stemmer.stem(word) for word in tokens]
+print(lemmatized_words)
+
+
+from nltk.sentiment import SentimentIntensityAnalyzer
+
+nltk.download('vader_lexicon')
+
+sia = SentimentIntensityAnalyzer()
+text = "NLTK is amazing for natural language processing!"
+print(sia.polarity_scores(text))
